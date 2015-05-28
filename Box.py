@@ -8,7 +8,6 @@ class Box:
         self.width = width
         self.height = height
         self.plist = list()
-        self.plength = 0
         self.be_linked = 0
         self.max_route = 1
 
@@ -24,32 +23,26 @@ class Box:
 
     def link_to(self, other):
         self.plist.append(other)
-        self.plength += 1
         other.be_linked += 1
-
-"""
-    Test for input:
-    def print_content(self):
-        print(self.length, self.width, self.height)
-"""
 
 
 def topo_sort(box):
 
-    for i, x in enumerate(box):
-        for j, y in enumerate(box):
+    # Record every box can be included in which box
+    for x in box:
+        for y in box:
             if x < y:
                 x.link_to(y)
 
+    box = sorted(box, key=attrgetter('be_linked'))
+
     while True:
-        for i, x in enumerate(box):
+        for x in box:
             if x.be_linked == 0:
-                for j, y in enumerate(x.plist):
-                    if y.max_route < x.max_route + 1:
-                        y.max_route = x.max_route + 1
-                    y.be_linked -= 1
                 x.be_linked = -1
-                print(i, x.max_route)
+                for y in x.plist:
+                    y.max_route = max(y.max_route, x.max_route+1)
+                    y.be_linked = y.be_linked - 1
 
         if all(b.be_linked == -1 for b in box):
             break
@@ -71,3 +64,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    sys.exit()
