@@ -11,6 +11,11 @@ class Box:
                 and self.width < other.width
                 and self.height < other.height)
 
+    def __gt__(self, other):
+        return (self.length > other.length
+                and self.width > other.width
+                and self.height > other.height)
+
     def link_to(self, box):
         self.plist.append(box)
         self.plength += 1
