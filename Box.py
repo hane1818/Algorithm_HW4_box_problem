@@ -5,6 +5,7 @@ class Box:
         self.height = height
         self.plist = list()
         self.plength = 0
+        self.be_linked = 0
 
     def __lt__(self, other):
         return (self.length < other.length
@@ -16,9 +17,11 @@ class Box:
                 and self.width > other.width
                 and self.height > other.height)
 
-    def link_to(self, box):
-        self.plist.append(box)
+    def link_to(self, other):
+        self.plist.append(other)
         self.plength += 1
+        other.be_linked += 1
+
 """
     Test for input:
     def print_content(self):
