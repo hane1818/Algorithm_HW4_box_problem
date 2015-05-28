@@ -54,8 +54,9 @@ def main():
     N = int(input())
     box = list()
     for i in range(N):
-        x = input()
-        x = x.split(' ')
+        x = input().split(' ')
+        x = [int(i) for i in x]
+        x.sort()
         x = Box(x[0], x[1], x[2])
         box.append(x)
 
