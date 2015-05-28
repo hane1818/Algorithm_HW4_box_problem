@@ -4,16 +4,34 @@ class Box:
         self.width = width
         self.height = height
         self.plist = list()
+        self.plength = 0
+
+    def __lt__(self, other):
+        return (self.length < other.length
+                and self.width < other.width
+                and self.height < other.height)
+
+    def link_to(self, box):
+        self.plist.append(box)
+        self.plength += 1
+"""
+    Test for input:
+    def print_content(self):
+        print(self.length, self.width, self.height)
+"""
 
 
 def main():
-    N = input()
+    N = int(input())
     box = list()
     for i in range(N):
         x = input()
-        x = x.split('')
-        b = Box(x[0], x[1], x[2])
-        box.append(b)
+        x = x.split(' ')
+        x = Box(x[0], x[1], x[2])
+        box.append(x)
+#    Test:
+#    for i, x in enumerate(box):
+#        x.print_content()
 
 if __name__ == "__main__":
     main()
