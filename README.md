@@ -19,7 +19,7 @@ $ python Box.py
 300 300 300
 400 400 400
 # First line give an integer N that means how many boxes there are.
-# After N lines give the length, width and height of each box.
+# In the following N lines, each give the length, width and height of box.
 ```
 ## Output type
 ```py
